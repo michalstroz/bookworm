@@ -11,8 +11,11 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    @book.save
-    redirect_to book_path(@book), notice: "The book has been successfully added"
+    if @book.save
+      redirect_to book_path(@book), notice: "The book has been successfully added"
+    else
+      render 'new'
+    end
   end
 
   def show
