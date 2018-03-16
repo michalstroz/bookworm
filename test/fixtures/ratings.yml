@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vote: 1
+  book: one
+
+two:
+  vote: 1
+  book: two
