@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :provide_book, only: [:show, :destroy, :edit, :update]
+  before_action :provide_book, only: [:show, :destroy, :edit, :update, :rating]
 
   def index
     @books = Book.all
@@ -35,6 +35,17 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     redirect_to books_path
+  end
+
+  def rating
+    rating = @book.rate
+    votes_quantity = @book.votes_quantity
+    total_of_grades = rating * votes_quantity
+    votes_quantity += 1
+    rating = (total_of_grades + params[:rate].to_f)/votes_quantity
+    @book.rate = rating
+    @book.votes_quantity = votes_quantity
+    @book.save
   end
 
   private

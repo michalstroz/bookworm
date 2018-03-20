@@ -12,9 +12,27 @@
   <dd><%= @book.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:publishing_house) %>:</strong></dt>
   <dd><%= @book.publishing_house %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
+  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>;
   <dd><%= image_tag @book.image.url, height: 'auto', width: '100px'; %></dd>
 </dl>
+
+<%= form_tag(rating_book_path(@book), method: :put, class: 'form-group', id: 'rating-form') do %>
+  <%= label_tag 'Rate' %><br />
+  <!-- <%= select_tag 'rate', options_for_select([1,2,3,4,5,6,7,8,9,10], 1), class: 'form-controll' %><br /> -->
+  <%= hidden_field_tag 'rate', 1, id: 'rate' %>
+    <div class="stars" id="stars_rate">
+        <span class="fa fa-star" id="star_1"></span>
+        <span class="fa fa-star" id="star_2"></span>
+        <span class="fa fa-star" id="star_3"></span>
+        <span class="fa fa-star" id="star_4"></span>
+        <span class="fa fa-star" id="star_5"></span>
+        <span class="fa fa-star" id="star_6"></span>
+        <span class="fa fa-star" id="star_7"></span>
+        <span class="fa fa-star" id="star_8"></span>
+        <span class="fa fa-star" id="star_9"></span>
+        <span class="fa fa-star" id="star_10"></span>
+    </div>
+<% end %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               books_path, :class => 'btn btn-default'  %>

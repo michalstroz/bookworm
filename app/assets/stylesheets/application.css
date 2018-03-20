@@ -12,4 +12,15 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
+ .stars{
+
+ }
+.checked{
+  color:#FFBF00;
+ }
+ .fa-star{
+   font-size: 30px!important;
+   cursor:pointer;
+ }
