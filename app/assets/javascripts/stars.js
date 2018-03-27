@@ -12,7 +12,7 @@ function putRateIntoField(elNum){
 }
 
 window.addEventListener('load', function(){
-  var stars = document.querySelectorAll('.star');
+  var stars = document.querySelectorAll('.fa.fa-star');
   for(var i = 0; i < stars.length; i++){
     stars[i].addEventListener('click', setRate);
   }
