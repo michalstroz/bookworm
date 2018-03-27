@@ -13,14 +13,24 @@
  *= require_tree .
  *= require_self
  *= require font-awesome
+ *= require ionicons
  */
+
  .stars{
+   unicode-bidi: bidi-override;
+   direction:rtl;
+   text-align: left;
+   font-size: 30px;
 
  }
-.checked{
-  color:#FFBF00;
+ .stars > .star{
+   display:inline-block;
+   position:relative;
+   width:1em;
  }
- .fa-star{
-   font-size: 30px!important;
-   cursor:pointer;
+ .stars > .star:hover:before,
+ .stars > .star:hover ~ .star:before{
+   content: "\2605";
+   position: absolute;
+   color: #FFD700;
  }
