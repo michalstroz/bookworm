@@ -31,7 +31,16 @@
         <span class="fa fa-star" id="star_2"></span>
         <span class="fa fa-star" id="star_1"></span>
     </div>
+
+    <div class="stars-rating" id='average-rate'>
+      <div class="stars-outer">
+        <div class="stars-inner" id="highlighted-stars"></div>
+      </div>
+      <%= render @book %>
+    </div>
 <% end %>
+
+
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               books_path, :class => 'btn btn-default'  %>

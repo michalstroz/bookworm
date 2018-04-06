@@ -42,10 +42,15 @@ class BooksController < ApplicationController
     votes_quantity = @book.votes_quantity
     total_of_grades = rating * votes_quantity
     votes_quantity += 1
-    rating = (total_of_grades + params[:rate].to_f)/votes_quantity
-    @book.rate = rating
+    @rating = (total_of_grades + params[:rate].to_f)/votes_quantity
+    @book.rate = @rating
     @book.votes_quantity = votes_quantity
-    @book.save
+    respond_to do |format|
+      if @book.save
+        format.html { redirect_to @book, notice: 'Thank You for your vote.' }
+        format.json { render json: @book, status: :created, location: @book }
+      end
+    end
   end
 
   private
