@@ -24,8 +24,8 @@ function putRateIntoField(elNum){
 }
 
 function setStarsRating(){
-  var averageRating = document.getElementById('average-rating').innerHTML;
-  if (typeof(averageRating) != 'undefined' && averageRating != null) {
+  if (document.getElementById('average-rating')) {
+    var averageRating = document.getElementById('average-rating').innerHTML;
     averageRating = parseFloat(averageRating);
     var percentage = averageRating * 10.0;
     var highlightedStars = document.getElementById('highlighted-stars');
