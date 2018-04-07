@@ -48,7 +48,6 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Thank You for your vote.' }
-        format.json { render json: @book, status: :created, location: @book }
       end
     end
   end

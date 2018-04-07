@@ -13,9 +13,9 @@ function setRate(event){
   putRateIntoField(elementNumber);
   document.getElementById('rating-form').submit();
   var starsRate = document.getElementById('stars_rate');
-  starsRate.className = starsRate.className.replace('stars', 'stars-none');
+  // starsRate.className = starsRate.className.replace('stars', 'stars-none');
   var averageRate = document.getElementById('average-rate');
-  averageRate.className = averageRate.className.replace('stars-none', 'stars-rating');
+  // averageRate.className = averageRate.className.replace('stars-none', 'stars-rating');
 }
 
 function putRateIntoField(elNum){
@@ -25,10 +25,9 @@ function putRateIntoField(elNum){
 
 function setStarsRating(){
   var averageRating = document.getElementById('average-rating').innerHTML;
-  if (typeof(averageRating) != 'undefined' && averageRating != null) {
     averageRating = parseFloat(averageRating);
     var percentage = averageRating * 10.0;
     var highlightedStars = document.getElementById('highlighted-stars');
     highlightedStars.style.width = percentage + '%';
-  }
+
 }
