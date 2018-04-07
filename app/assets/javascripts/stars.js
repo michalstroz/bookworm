@@ -29,5 +29,4 @@ function setStarsRating(){
     var percentage = averageRating * 10.0;
     var highlightedStars = document.getElementById('highlighted-stars');
     highlightedStars.style.width = percentage + '%';
-
 }
