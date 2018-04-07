@@ -47,6 +47,7 @@ class BooksController < ApplicationController
     @book.votes_quantity = votes_quantity
     respond_to do |format|
       if @book.save
+        session[:marked] = true
         format.html { redirect_to @book, notice: 'Thank You for your vote.' }
         format.json { render json: @book, status: :created, location: @book }
       end

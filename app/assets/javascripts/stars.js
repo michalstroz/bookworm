@@ -12,10 +12,6 @@ function setRate(event){
   elementNumber = parseInt(elementNumber);
   putRateIntoField(elementNumber);
   document.getElementById('rating-form').submit();
-  var starsRate = document.getElementById('stars_rate');
-  starsRate.className = starsRate.className.replace('stars', 'stars-none');
-  var averageRate = document.getElementById('average-rate');
-  averageRate.className = averageRate.className.replace('stars-none', 'stars-rating');
 }
 
 function putRateIntoField(elNum){
