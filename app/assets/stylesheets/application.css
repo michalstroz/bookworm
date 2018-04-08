@@ -72,3 +72,14 @@
   margin: 0 0 0 10px;
   display: inline-block;
 }
+
+/*books search form*/
+.search-form{
+  margin-bottom: 30px;
+}
+#title{
+  margin-bottom: 20px;
+}
+.input-group{
+  width: 100%;
+}

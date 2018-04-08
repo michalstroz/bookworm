@@ -2,6 +2,19 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+<%= form_tag books_path, method: :get, class: "search-form" do %>
+  <div class="input-group">
+    <%= label_tag 'Title:' %><br />
+    <%= text_field_tag :title, '', value: params[:title], class: "form-control" %>
+    <%= label_tag 'Author:' %><br />
+    <%= text_field_tag :author, '', value: params[:author], class: "form-control" %>
+  </div>
+  <div class="input-group-btn">
+    <%= submit_tag "Search", class: "btn btn-default" %>
+    <%= link_to "Clear", books_path, class: "btn btn-default" %>
+  </div>
+<% end %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -13,12 +26,12 @@
         <div class="rating-header"><%= model_class.human_attribute_name(:rating) %>
           <p class="sorting-arrows">
             <% if params[:order] != "asc" %>
-              <%= link_to books_path(order: :asc, search: params[:search]) do %>
+              <%= link_to books_path(order: :asc, title: params[:title], author: params[:author]) do %>
                 <span class="fa fa-sort-up"></span><br />
               <% end %>
             <% end %>
             <% if params[:order] != "desc" %>
-              <%= link_to books_path(order: :desc, search: params[:search]) do %>
+              <%= link_to books_path(order: :desc, title: params[:title], author: params[:author]) do %>
                 <span class="fa fa-sort-down"></span>
               <% end %>
             <% end %>

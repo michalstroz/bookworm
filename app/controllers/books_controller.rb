@@ -6,6 +6,12 @@ class BooksController < ApplicationController
     if params[:order].present?
       @books = @books.order(rate: params[:order])
     end
+    if params[:title].present?
+      @books = @books.where("title ilike ?", "%#{params[:title]}%")
+    end
+    if params[:author].present?
+      @books = @books.where("author ilike ?", "%#{params[:author]}%")
+    end
   end
 
   def new
