@@ -3,6 +3,9 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    if params[:order].present?
+      @books = @books.order(rate: params[:order])
+    end
   end
 
   def new
