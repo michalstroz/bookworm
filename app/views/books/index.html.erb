@@ -9,7 +9,22 @@
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:author) %></th>
       <th><%= model_class.human_attribute_name(:publishing_house) %></th>
-      <th><%= model_class.human_attribute_name(:rating) %></th>
+      <th>
+        <div class="rating-header"><%= model_class.human_attribute_name(:rating) %>
+          <p class="sorting-arrows">
+            <% if params[:order] != "asc" %>
+              <%= link_to books_path(order: :asc, search: params[:search]) do %>
+                <span class="fa fa-sort-up"></span><br />
+              <% end %>
+            <% end %>
+            <% if params[:order] != "desc" %>
+              <%= link_to books_path(order: :desc, search: params[:search]) do %>
+                <span class="fa fa-sort-down"></span>
+              <% end %>
+            <% end %>
+          </p>
+        </div>
+      </th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>

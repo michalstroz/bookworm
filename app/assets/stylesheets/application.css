@@ -62,3 +62,13 @@
     color: #DAA520;
     margin-left:10px;
 }
+
+/*sorting arrows*/
+
+.rating-header{
+  display:inline-flex;
+}
+.sorting-arrows{
+  margin: 0 0 0 10px;
+  display: inline-block;
+}
