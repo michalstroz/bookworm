@@ -52,7 +52,7 @@ class BooksController < ApplicationController
     total_of_grades = rating * votes_quantity
     votes_quantity += 1
     rating = (total_of_grades + params[:rate].to_f)/votes_quantity
-    @book.rate = @rating
+    @book.rate = rating
     @book.votes_quantity = votes_quantity
     respond_to do |format|
       if @book.save
@@ -60,6 +60,10 @@ class BooksController < ApplicationController
         format.html { redirect_to @book, notice: 'Thank You for your vote.' }
       end
     end
+  end
+
+  def best_books
+    @books = Book.order(rate: :desc).limit(10)
   end
 
   private
