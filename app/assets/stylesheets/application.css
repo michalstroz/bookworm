@@ -70,7 +70,11 @@
 }
 .sorting-arrows{
   margin: 0 0 0 10px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+}
+.sorting-arrows a{
+  height:0px;
 }
 
 /*books search form*/
