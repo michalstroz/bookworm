@@ -16,7 +16,7 @@
   <dd><%= image_tag @book.image.url, height: 'auto', width: '100px'; %></dd>
 </dl>
 
-<% if !session[:marked] %>
+<% if !session["book-marked-#{@book.id}"] %>
 
   <%= form_tag(rating_book_path(@book), method: :put, class: 'form-group', id: 'rating-form') do %>
     <%= label_tag 'Rate:' %><br />
@@ -34,7 +34,7 @@
           <span class="fa fa-star" id="star_1"></span>
       </div>
   <% end %>
-<% elsif session[:marked]
+<% elsif session["book-marked-#{@book.id}"]
    %>
 
   <%= label_tag 'Average Rating:' %><br />
