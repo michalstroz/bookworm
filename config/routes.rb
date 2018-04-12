@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :books do
     put :rating, on: :member
+    resources :reviews, only: [:create, :destroy]
   end
 
   get 'top-10-books', to: 'books#best_books'
