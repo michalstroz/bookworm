@@ -47,6 +47,12 @@
 
 <% end %>
 
+<h2>Reviews</h2>
+  <%= render "reviews/form" %>
+<div class="reviews hided-reviews" id="book-reviews">
+    <%= render @book.reviews.order(created_at: :desc) %>
+</div>
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
               books_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
