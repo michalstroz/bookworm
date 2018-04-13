@@ -1,0 +1,11 @@
+<p>
+  <strong>Reviewer:</strong>
+  <%= review.name %>
+  <strong>Review:</strong>
+  <%= review.contents %>
+</p>
+<p>
+  <%= link_to "Delete", book_review_path(@book, review),
+                                        method: :delete,
+                                        data: { confirm: 'Are you sure?' }%>
+</p>
