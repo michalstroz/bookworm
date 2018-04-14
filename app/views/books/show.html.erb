@@ -47,11 +47,6 @@
 
 <% end %>
 
-<h2>Reviews</h2>
-  <%= render "reviews/form" %>
-<div class="reviews hided-reviews" id="book-reviews">
-    <%= render @book.reviews.order(created_at: :desc) %>
-</div>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               books_path, :class => 'btn btn-default'  %>
@@ -62,3 +57,12 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+
+              <div class="reviews-section">
+                <h2>Add review</h2>
+                  <%= render "reviews/form" %>
+                <div class="reviews hided-reviews" id="book-reviews">
+                  <h2>Reviews:</h2>
+                    <%= render @book.reviews.order(created_at: :desc) %>
+                </div>
+              </div>

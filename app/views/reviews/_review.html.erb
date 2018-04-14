@@ -1,11 +1,18 @@
-<p>
-  <strong>Reviewer:</strong>
-  <%= review.name %>
-  <strong>Review:</strong>
-  <%= review.contents %>
-</p>
-<p>
-  <%= link_to "Delete", book_review_path(@book, review),
-                                        method: :delete,
-                                        data: { confirm: 'Are you sure?' }%>
-</p>
+<div class="review">
+  <div class="review-content">
+    <p>
+      <strong>Reviewer:   </strong>
+      <%= review.name %>
+    </p>
+    <p>
+      <strong>Review:</strong><br>
+      <%= review.contents %>
+    </p>
+  </div>
+  <div class="review-buttons-section">
+    <%= link_to "Delete", book_review_path(@book, review),
+                                          method: :delete,
+                                          data: { confirm: 'Are you sure?' },
+                                          class: 'btn btn-danger deleting-review'%>
+  </div>
+</div>
