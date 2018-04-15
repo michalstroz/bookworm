@@ -30,8 +30,15 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Link1", "/path1"  %></li>
             <li><%= link_to "Top 10", top_10_books_path  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to "Login", new_user_session_path, method: :get %></li>
+            <% end %>
           </ul>
+          <% if user_signed_in? %>
+            <span class="current-user">(<%= current_user.email %>)</span>
+            <% end %>
         </div>
       </div>
     </div>

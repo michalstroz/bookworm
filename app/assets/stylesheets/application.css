@@ -110,5 +110,10 @@
 .deleting-review{
   margin: auto;
   margin-top:35%;
-
+}
+.current-user{
+  color:#777777;
+  display:inline-block;
+  margin-top: 15px;
+float: right;
 }

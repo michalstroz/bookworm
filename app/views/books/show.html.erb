@@ -34,8 +34,7 @@
           <span class="fa fa-star" id="star_1"></span>
       </div>
   <% end %>
-<% elsif session["book-marked-#{@book.id}"]
-   %>
+<% elsif session["book-marked-#{@book.id}"] %>
 
   <%= label_tag 'Average Rating:' %><br />
     <div class="stars-rating" id='average-rate'>
