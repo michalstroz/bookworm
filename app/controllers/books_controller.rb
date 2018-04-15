@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :provide_book, only: [:show, :destroy, :edit, :update, :rating]
 
   def index
@@ -55,6 +56,7 @@ class BooksController < ApplicationController
     rating = (total_of_grades + params[:rate].to_f)/votes_quantity
     @book.rate = rating
     @book.votes_quantity = votes_quantity
+    binding.pry
     respond_to do |format|
       if @book.save
         session["book-marked-#{@book.id}"] = true
@@ -71,6 +73,7 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :author, :description, :publishing_house, :image)
+        .merge(user: current_user)
   end
 
   def provide_book
