@@ -117,3 +117,10 @@
   margin-top: 15px;
 float: right;
 }
+/*signed book by user*/
+.dl-horizontal > dt:last-of-type{
+  margin-top:20px;
+}
+.dl-horizontal > dd:last-of-type{
+  margin-top:20px;
+}
