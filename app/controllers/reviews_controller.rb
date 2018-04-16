@@ -13,9 +13,13 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = @book.reviews.find(params[:id])
-    @review.destroy
-    redirect_to book_path(@book)
+    if @book.user_id != current_user.id
+      redirect_to book_path(@book), notice: "You have no access to delete this comment."
+    else
+      @review = @book.reviews.find(params[:id])
+      @review.destroy
+      redirect_to book_path(@book)
+    end
   end
   private
 
