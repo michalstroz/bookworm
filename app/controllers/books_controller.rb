@@ -33,6 +33,9 @@ class BooksController < ApplicationController
   end
 
   def edit
+    if @book.user_id != current_user.id
+      redirect_to book_path, notice: "You have no access to edit this book."
+    end
   end
 
   def update
@@ -44,8 +47,12 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book.destroy
-    redirect_to books_path
+    if @book.user_id != current_user.id
+      redirect_to book_path, notice: "You have no access to delete this book."
+    else
+      @book.destroy
+      redirect_to books_path
+    end
   end
 
   def rating
@@ -56,7 +63,6 @@ class BooksController < ApplicationController
     rating = (total_of_grades + params[:rate].to_f)/votes_quantity
     @book.rate = rating
     @book.votes_quantity = votes_quantity
-    binding.pry
     respond_to do |format|
       if @book.save
         session["book-marked-#{@book.id}"] = true
