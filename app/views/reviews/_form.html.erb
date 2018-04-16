@@ -1,4 +1,6 @@
 
+<%= render 'errors', model: @review %>
+
 <%= form_for [@book, @review] do |f| %>
   <div class="form-group">
     <%= f.label :name %><br>

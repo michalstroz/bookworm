@@ -1,19 +1,6 @@
 <%= form_for @book, html: { multipart: true }, :html => { :class => "form-horizontal book" } do |f| %>
 
-  <% if @book.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @book.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+  <%= render 'errors', model: @book %>
 
   <div class="form-group">
     <%= f.label :title, :class => 'control-label col-lg-2' %>
