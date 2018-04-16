@@ -12,8 +12,10 @@
   <dd><%= @book.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:publishing_house) %>:</strong></dt>
   <dd><%= @book.publishing_house %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>;
+  <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
   <dd><%= image_tag @book.image.url, height: 'auto', width: '100px'; %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:Added_by_user) %>:</strong></dt>
+  <dd><%= @book.user.email %></dd>
 </dl>
 
 <% if !session["book-marked-#{@book.id}"] %>
