@@ -15,6 +15,7 @@
     <%= link_to "Clear", books_path, class: "btn btn-default" %>
   </div>
 <% end %>
+<%= will_paginate @books, renderer: BootstrapPagination::Rails %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -66,7 +67,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate @books, renderer: BootstrapPagination::Rails %>
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_book_path,
             :class => 'btn btn-primary' %>
