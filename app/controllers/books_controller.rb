@@ -4,6 +4,8 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+                 .paginate(:page => params[:page], :per_page => 10)
+                 .includes(:user)
     if params[:order].present?
       @books = @books.order(rate: params[:order])
     end
