@@ -74,7 +74,19 @@ class BooksController < ApplicationController
   end
 
   def best_books
-    @books = Book.order(rate: :desc).limit(10)
+    @books = Book.all
+    vq = @books.each_with_object(Hash.new(0)) { |book, hash| hash[book.id] = [book.votes_quantity, book.rate] if book.votes_quantity > 100 }
+    total_average = (vq.inject(0){ |a, b| a + b[1][1] })/vq.length
+    wa_array = Hash.new
+    vq.each do |key, array|
+      votes_quantity = array[0].to_f
+      book_rate = array[1].to_f
+      first_product = (votes_quantity/(votes_quantity+100)) * book_rate
+      second_product = (100/(votes_quantity+100))*total_average
+      weighted_average = first_product + second_product
+      wa_array[key] = weighted_average
+    end
+    wa_array = wa_array.sort_by{ |k, v| v }.reverse.first(10).to_h
   end
 
   private
