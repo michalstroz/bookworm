@@ -1,11 +1,10 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :provide_book, only: [:show, :destroy, :edit, :update, :rating]
+  before_action :get_all_books, only:[:index, :best_books]
 
   def index
-    @books = Book.all
-                 .paginate(:page => params[:page], :per_page => 10)
-                 .includes(:user)
+    @books = @books.paginate(:page => params[:page], :per_page => 10).includes(:user)
     if params[:order].present?
       @books = @books.order(rate: params[:order])
     end
@@ -82,7 +81,6 @@ class BooksController < ApplicationController
   end
 
   def best_books
-    @books = Book.all
     vq = @books.each_with_object(Hash.new(0)) { |book, hash| hash[book.id] = [book.votes_quantity, book.rate] if book.votes_quantity > 100 }
     total_average = (vq.inject(0){ |a, b| a + b[1][1] })/vq.length
     wa_array = Hash.new
@@ -112,5 +110,9 @@ class BooksController < ApplicationController
 
   def provide_book
     @book = Book.find(params[:id])
+  end
+
+  def get_all_books
+    @books = Book.all
   end
 end
