@@ -35,8 +35,12 @@ class BooksController < ApplicationController
   end
 
   def edit
-    if @book.user_id != current_user.id
+    if current_user.nil?
       redirect_to book_path, notice: "You have no access to edit this book."
+    else
+      if @book.user_id != current_user.id
+        redirect_to book_path, notice: "You have no access to edit this book."
+      end
     end
   end
 
@@ -49,11 +53,15 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    if @book.user_id != current_user.id
+    if current_user.nil?
       redirect_to book_path, notice: "You have no access to delete this book."
     else
-      @book.destroy
-      redirect_to books_path
+      if @book.user_id != current_user.id
+        redirect_to book_path, notice: "You have no access to delete this book."
+      else
+        @book.destroy
+        redirect_to books_path
+      end
     end
   end
 
