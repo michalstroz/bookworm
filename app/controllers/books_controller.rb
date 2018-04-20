@@ -87,6 +87,12 @@ class BooksController < ApplicationController
       wa_array[key] = weighted_average
     end
     wa_array = wa_array.sort_by{ |k, v| v }.reverse.first(10).to_h
+    @books = @books.map do |book|
+      if wa_array.has_key? book.id
+        book.rate = wa_array[book.id]
+        book
+      end
+    end.compact.sort_by{ |book| book.rate }.reverse
   end
 
   private
