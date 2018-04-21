@@ -21,7 +21,7 @@
         <td><%= book.title %></td>
         <td><%= book.author %></td>
         <td><%= book.publishing_house %></td>
-        <td><%= book.rate.round(2) %></td>
+        <td><%= book.wa.round(2) %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       book_path(book), :class => 'btn btn-default btn-xs' %>
