@@ -14,7 +14,7 @@ class BestBooksFetcher
   end
 
   def fetch_books
-     Book.select("books.*, ").where("books.votes_quantity > #{@min}").order('wa desc').limit(10)
+     Book.select("books.*, #{weighted_average_column}").where("books.votes_quantity > #{@min}").order('wa desc').limit(10)
   end
 
   def weighted_average_column
