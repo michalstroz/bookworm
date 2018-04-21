@@ -81,8 +81,7 @@ class BooksController < ApplicationController
   end
 
   def best_books
-    global_average =  ActiveRecord::Base.connection.select_all('SELECT SUM(books.rate)/COUNT(*) AS S FROM books').first['s']
-    @books = Book.select("books.*, (((CAST(books.votes_quantity AS FLOAT)/(books.votes_quantity + 100)) * books.rate) + ((100/(CAST(books.votes_quantity AS FLOAT) + 100)) * '#{global_average}')) AS wa").where('books.votes_quantity > 100').order('wa desc').limit(10)
+    @books = BestBooksFetcher.new(100).fetch
   end
 
   private
