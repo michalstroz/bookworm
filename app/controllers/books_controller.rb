@@ -81,24 +81,8 @@ class BooksController < ApplicationController
   end
 
   def best_books
-    vq = @books.each_with_object(Hash.new(0)) { |book, hash| hash[book.id] = [book.votes_quantity, book.rate] if book.votes_quantity > 100 }
-    total_average = (vq.inject(0){ |a, b| a + b[1][1] })/vq.length
-    wa_array = Hash.new
-    vq.each do |key, array|
-      votes_quantity = array[0].to_f
-      book_rate = array[1].to_f
-      first_product = (votes_quantity/(votes_quantity+100)) * book_rate
-      second_product = (100/(votes_quantity+100))*total_average
-      weighted_average = first_product + second_product
-      wa_array[key] = weighted_average
-    end
-    wa_array = wa_array.sort_by{ |k, v| v }.reverse.first(10).to_h
-    @books = @books.map do |book|
-      if wa_array.has_key? book.id
-        book.rate = wa_array[book.id]
-        book
-      end
-    end.compact.sort_by{ |book| book.rate }.reverse
+    global_average =  ActiveRecord::Base.connection.select_all('SELECT SUM(books.rate)/COUNT(*) AS S FROM books').first['s']
+    @books = Book.select("books.*, (((CAST(books.votes_quantity AS FLOAT)/(books.votes_quantity + 100)) * books.rate) + ((100/(CAST(books.votes_quantity AS FLOAT) + 100)) * '#{global_average}')) AS wa").where('books.votes_quantity > 100').order('wa desc').limit(10)
   end
 
   private
